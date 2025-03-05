@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Exe1 {
     public static void main(String[] args) throws FileNotFoundException {
         String[] judete = new String[50];
-        Scanner scanner = new Scanner(new File("src/ex1/judete_in.txt"));
+        Scanner scanner = new Scanner(new File("lab2/src/ex1/judete_in.txt"));
         int idx = 0;
 
         while (scanner.hasNext()) {
@@ -19,11 +19,23 @@ public class Exe1 {
 
 
         String[] judeteCitite = Arrays.copyOf(judete, idx);
+        Scanner scanner1=new Scanner(System.in);
+        String judetCautat=scanner1.next().trim();
+        if(idx< judeteCitite.length)
+        judeteCitite[idx++]=judetCautat;
+
+        String[] judeteFinal = Arrays.copyOf(judeteCitite, idx);
+
+        int poz= Arrays.binarySearch(judeteFinal, judetCautat);
 
         Arrays.sort(judeteCitite);
 
-        for (String judet : judeteCitite) {
+        for (String judet : judeteFinal) {
             System.out.println(judet);
+        }
+
+        if(poz>0){
+            System.out.println("judetul introdus de la tastatura se afla la pozitia: " + poz);
         }
     }
 }
